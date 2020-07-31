@@ -1,0 +1,433 @@
+用于学习的网站:https://developer.mozilla.org/zh-CN
+
+展示网页的原理：
+	代码+浏览器
+	浏览器的作用就是将代码翻译成人能直接看懂的东西。
+
+web标准
+	为什么要设置web标准？
+		不同的浏览器虽然用着不同的内核，但我们希望呈献给用户的东西是相同的东西。
+		这时候我们就需要设定web标准
+	web标准有三块
+		结构
+			html
+		展示
+			CSS
+		行为
+			Javascript
+			
+标签：
+	什么是标签？
+		其实就像是编程语言里的函数，所有的功能都需要通过标签来实现
+	标签的种类：
+		大部分标签都是成对出现：
+			<html></html>, <head></head>, <body></body>
+		少部分标签可以单独使用：
+			<img />, <br />
+	如何使用标签？
+		对于成对的标签，只用把想要输入的东西填到中间就可以了，有点像是x = input("请输入密码")中的"请输入密码"
+		
+		对于单独使用的标签，基本不存在填写进输入的东西，就是有参数需要进行修改.
+			比如<img />这个标签，他有许多的参数可以进行修改，比如src, alt, title， 就跟修改python中的各种参数一样。
+	
+下面我将介绍常用的标签
+	最基本的框架:
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>庄研真帅</title>
+	</head>
+	<body>
+		这是一个介绍大帅哥庄研的网页
+	</body>
+	</html>
+		
+		仔细介绍：
+		<!DOCTYPE html>表示这是遵循html5 web标准的网页
+		<html lang="en"></html>
+			最大的框架，就像是c++里面的main()，所有需要执行的标签都填进这个里面
+			lang="en"表示这是一个英语的网站，表示中文可以改成"zh-CN"，表示法语则是"fr"
+				不同语言影响？
+					不会影响我们的输入，依然可以在法语的网站上输入中文。
+					如果谷歌检索到你在中国而这是一个法语网站，会提示一个是否翻译的弹窗，其他好像也没啥
+					
+		<head><titile>庄研真帅</titile></head>		"庄研真帅"这四个字会在tab标签上显示出来
+			https://www.cnblogs.com/samjack/p/7077200.html
+			里面可以填入很多设置，比如我们的编码是什么，我们的语言类型是什么，我们的作者又是谁？
+			当然，这并不会直接反馈在网页中，而是潜藏在背后，用于搜索引擎的寻找。
+				比如：
+					作者是谁：
+					<meta name="author"content="root,root@xxxx.com"> 
+					网址过期时间：
+					<meta http-equiv="expires"content="Fri,12Jan200118:18:18GMT">
+				
+		<body>这是一个介绍大帅哥庄研的网页</body>	"这是一个介绍大帅哥庄研的网页"这几个字就会在正文里出现
+		
+	body中的一些可使用标签； 
+		基础的三个:
+			标题		<h1></h1> <h2></h2> <h3></h3> <h4></h4> <h5></h5> <h6></h6>
+				这里的1,2,3,4,5,6代指的是等级，越小表示等级越高，也就意味着字体越大。 
+				标题会独占一行
+			分段		<p></p>
+			回车		<br />
+		
+		文本格式化:
+			加粗		<strong></strong>	or	<b></b>
+			删除线		<del></del>			or	<s></s>
+			倾斜		<em></em>			or	<i></i>
+			下划线		<ins></ins>			or	<u></u>
+			Tips:老师推荐使用前者，但是不知道用后者有什么影响，也可以完成想要的任务
+			
+		分割div和span：
+			从body的大块中，单独另一块出来。
+			<div></div>
+				可以进行正常的编译，有种分块的意思
+				<div>
+					<head>京东特惠</head>
+				</div>
+				Tips：这个的宽度是一整行。
+			
+			<span></span>
+				可以进行分割，但是分割的宽度并不是整个浏览器，而是一小格
+					<span>庄研</span><span>光秃是开</span><span>咸蛋超人</span>
+					上面的三个span会在同一行，而不是像div那样，直接占满一行
+		
+		图像标签<img />
+			如何使用？
+				<img src="框架标签介绍.png" />
+				这样就可以导入一张图片
+			
+			更多的参数可以输入:
+				<img src=".../abc.png" alt="图片加载失败啦">		如果图片没能正确加载
+				<img src=".../abc.png" title="这就是帅气的庄研">	光标移动到图片上，显示的信息
+				<img src=".../abc.png" width=200 height=400>		设定图片在网页上显示的大小
+				<img src=".../abc.png" border = "1">					增加图片边框
+					Tips:
+						在设定网页显示大小的时候，一般只用设定高度与宽度的一个，另一个会随之按比例缩放，这样可以避免失真
+				
+		
+		绝对路径与相对路径：
+			在刚才导入图片的时候其实就可以发现，图片不一定和网页是在同一级，也就是src="框架标签介绍.png"这一块并不都会这么写，那么该怎么办呢？
+				相对路径:
+					如果文件跟网页是在同一层:
+						直接src="框架标签介绍.png"就可以了
+					如果文件是在网页的上一层:
+						src="../框架标签介绍.png"
+					如果文件是在网页的下一层:
+						src="images/框架标签介绍.png"
+					Tips：
+						上上层就是"../../框架标签介绍.png"
+						下下层就是"a/b/框架标签介绍.png"
+				
+				绝对路径:
+					src="D:\杂七杂八\web开发\框架标签介绍.png"
+			
+				Tips:
+					一般情况推荐使用相对路径。
+					如果使用绝对路径，别的电脑登录的时候，目标文件的位置不一定和写的文件的位置保持一致，也就是说会出现找不到的情况
+		
+		超链接标签：
+			网页里面点一下，调到另一个网页。
+				这里分两种网页，一个是自己的网页，一个是外部网页；
+					外部网页:
+						<a href="http://www.baidu.com"> 百度 </a>
+						Tips:书写的时候一定要添加"http://"
+					内部网页:
+						什么叫内部网页。
+							就是我除了会建立我的主网页，还有建立很多子网页，想从主网页跳到子网页，就是跳到内部网页
+						<a href="html笔记.html"> 在？看看笔记？ </a>
+							这些网页就是一定编写好的
+				target参数介绍:
+					进行网页跳转的时候，默认是在原网页直接跳转，不会打开新网页，当然可以进行修改。
+						下面三个好像是一样的，都是直接在原网页跳转:
+						<a href="http://www.baidu.com" target="_self"> 百度 </a>
+						<a href="http://www.baidu.com" target="_parent"> 百度 </a>
+						<a href="http://www.baidu.com" target="_top"> 百度 </a>
+					这个会新开一个网页，进行跳转:
+						<a href="http://www.baidu.com" target="_blank"> 百度 </a>
+	
+		锚点链接标签:
+			典型案例就是百度百科，点击一下关键词，调到相关的位置。
+				<a href="#庄研"> 庄研 </a>			<----这里定义名字的时候一定要有一个#
+				<h3 id="庄研"> 帅气的照片</h3>		<----这里不一定要用head，其实用a好像也可以实现，只用找到目标的id就好了
+				
+		特殊字符:
+			这一块有点像/n /t，html里也有一些很特别的词汇；
+				注释		<!---->
+				空格		&nbsp;
+				大于号		&gt;
+				小于号		&lt;
+			想要用的时候再查一下
+			Tips：记得用的时候加分号
+		
+		表格标签:
+			也就是在网页上显示出一个表格，最主要的意义是排列整齐
+			<table border="1" cellspacing="0" cellpadding="0" align="center">
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>官网</th>
+						<th>性质</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>C语言中文网</td>
+						<td><a href="http://c.biancheng.net/" target="_blank">http://c.biancheng.net/</a></td>
+						<td>教育</td>
+					</tr>
+					<tr>
+						<td>百度</td>
+						<td><a href="http://www.baidu.com/" target="_blank">http://www.baidu.com</a></td>
+						<td>搜索</td>
+					</tr>
+					<tr>
+						<td>当当</td>
+						<td><a href="http://www.dangdang.com/" target="_blank">http://www.dangdang.com/</a></td>
+						<td>图书</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			标签介绍:
+			<table></table>	最大scope，所有东西都要放在这里面
+			<tr></tr>		表示一行。一行想要输入的东西都要放在这里面
+			行中的单元格:
+				<td></td>	就是普通的单元格，里面正常放东西
+				<th></th>	表头单元格，会加粗居中
+			单元格不一定只有一格，有时候会多一点，这里分变宽和变高两种:
+				将原本宽度为一列的单元格变为两列：
+					<td colspan="2"></td>
+				将原本高度为一行的单元格变为两行:
+					<td rowspan="2"></td>
+				
+			为了更细化结构
+				<thead></thead>表示这一部分是表头
+				<tbody></tbody>表示这一部分是表身
+				
+		列表标签:
+			Question:在已经有了表格标签的前提下，不知道列表标签的意义是什么？
+			有三种列表，无序列表，有序列表和自定义列表。
+				<h4>下面是我们的所有服务</h4>
+				<ul>
+					<li>
+						手机&nbsp;电话卡
+					</li>
+					<li>
+						电视&nbsp;盒子
+					</li>
+					<li>
+						笔记本&nbsp;显示器&nbsp;平板
+					</li>
+				</ul>
+				<h4>下面是我们的销量排行榜</h4>
+				<ol>
+					<li>
+						Redmi&nbsp;K20&nbsp;Pro&nbsp;尊享版
+					</li>
+					<li>
+						小米&nbsp;10&nbsp;Pro
+					</li>
+				</ol>
+				<h4>额外的支持</h4>
+				<dl>
+					<dt>帮助中心</dt>
+					<dd><a href="#">账户管理</a></dd>
+					<dd><a href="#">购物指南</a></dd>
+					<dd><a href="#">订单操作</a></dd>
+					<dt>服务支持</dt>
+					<dd><a href="#">售后政策</a></dd>
+					<dd><a href="#">自助服务</a></dd>
+					<dd><a href="#">相关下载</a></dd>
+				</dl>
+			
+			标签介绍:
+				无序列表:
+					<ul></ul>	表示无序列表的scope
+					<li></li>	用于表示一个单元格
+						Tips:<ul></ul>里面只能放<li></li>，不能放别的东西，但是<li></li>中可以额外放东西进去
+						使用场景：没有先后顺序
+				有序列表:
+					<ol></ol>	表示有序列表的scope
+					<li></li>	用于表示一个单元格
+						Tips:<ol></ol>里面只能放<li></li>，不能放别的东西，但是<li></li>中可以额外放东西进去
+						使用场景: 需要表示一定的先后顺序
+				自定义列表
+					<dl></dl>	表示自定义列表的scope
+					<dt></dt>	自定义列表的表头部分
+					<dd></dd>	自定义列表的表什部分
+						看这个定义就知道，自定义列表更像是一棵树向下延伸出许多的根，这种类型的数据可以放到自定义列表中
+						
+		表单域标签；
+			<h4>青春不常在，抓紧谈恋爱</h4>
+			<form action="XXXX.sql" method="get">
+				<table border="0" cellpadding="0" cellspacing="0">
+		<!--            性别-->
+					<tr>
+						<td>性别</td>
+						<td>
+							<input type="radio" name="gender" id="nan"> <label for="nan">男</label>
+							<input type="radio" name="gender" id="nv"> <label for="nv">女</label>
+						</td>
+					</tr>
+		<!--            生日-->
+					<tr>
+						<td>生日</td>
+						<td>
+							<select>
+								<option selected="selected">
+									--请选择--
+								</option>
+								<option>
+									1999
+								</option>
+								<option>
+									2000
+								</option>
+								年
+							</select>
+							<select>
+								<option selected="selected">
+									--请选择--
+								</option>
+								<option>
+									1
+								</option>
+								<option>
+									2
+								</option>
+								月
+							</select>
+							<select>
+								<option selected="selected">
+									--请选择--
+								</option>
+								<option>
+									1
+								</option>
+								<option>
+									2
+								</option>
+								日
+							</select>
+						</td>
+					</tr>
+		<!--            常住地址-->
+					<tr>
+						<td>常住地</td>
+						<td>
+							<input type="text" placeholder="请选择">
+						</td>
+					</tr>
+		<!--            婚姻状况-->
+					<tr>
+						<td>婚姻状况</td>
+						<td>
+							<input type="radio" name="marriage" id="未婚"> <label for="未婚">未婚</label>
+							<input type="radio" name="marriage" id="离异"> <label for="离异">离异</label>
+							<input type="radio" name="marriage" id="丧偶"> <label for="丧偶">丧偶</label>
+						</td>
+					</tr>
+		<!--            自我介绍-->
+					<tr>
+						<td>自我介绍</td>
+						<td><textarea rows="5" cols="30" placeholder="我是一个无情的文本框"></textarea></td>
+					</tr>
+		<!--            注册-->
+					<tr>
+						<td></td>
+						<td><input type="submit" value="免费注册"></td>
+					</tr>
+		<!--            承诺-->
+					<tr>
+						<td></td>
+						<td><input type="checkbox" checked="checked">我同意<a href="#">注册条款</a>和<a href="#">会员加入标准</a></td>
+					</tr>
+		<!--            我承诺-->
+					<tr>
+						<td></td>
+						<td>
+							<h4>我承诺</h4>
+							<ul>
+								<li>年满十八，单身</li>
+								<li>抱着严格的态度</li>
+								<li>真诚寻找另一半</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+			标签介绍:
+				在网页操作的过程中经常需要填表，那么表格填好后的信息该如何传递出去呢？
+					<form></form>	填表的最大scope
+						其中有许多参数可以进行修改, action是用来链接后台数据库或者服务器，method是如何链接连接数据库
+				
+				填表的时候有许多操作可以进行，基本都在input中完成,它提供了很多种type
+				https://www.w3school.com.cn/tags/att_input_type.asp
+					radio		多选一的框框。如果想要实现多选一，一定要定义相同的name
+					checkbox	复选框。
+					password	用来输入密码的。在用户输入的时候，会自动将输入的东西变成别的字符(估计CSS里面可以定义)
+					submit		提交按钮。将已经填写的东西传输到服务器
+					file		用来上传文件
+					text		文本框
+					Tips:
+						1.所有的信息最好都要定义name，一方面可以知道谁跟谁是一组，另一方面后台接收的数据库需要根据name来填写数据。
+						2.如果想要预设置一定内容在text文本框中，可以用placeholder来实现。别用value，相比于placeholder，value更像是defaul值。用户不填写的话，直接传输默认值。
+						
+				
+				下拉选项：
+				<select></select>		下拉菜单的最大scope
+				<option></option>		下拉菜单中的一个选项
+					Tips:可以用selected="selected"这个参数，来定义打开网页时展示给用户的东西
+				
+				文本框:
+				<textarea cols="20" rows="5"></textarea>	相比于input里面的文本框，这个文本框更大，可以包容更多内容
+				
+				"标签"选项
+				<label for="nan">男</label>
+				<input type="radio" id="nan">
+					这样一组操作的话，可以提高用户体验。用户不再需要点那个小框框，而是点"男"这个字符就好了，会选上那个框。
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+			
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		

@@ -1,0 +1,354 @@
+再讲完html之后，也就是框架搭建好之后，就需要开始装饰了
+
+<!-- 提供两个方便进行修改的plugin， auto rename tag以及 open in browser -->
+
+有三种方式进行装饰:
+    1.  内部装饰表
+    2.  行内装饰表
+    3.  外部装饰表
+
+我们以内部装饰表为出发点，开始学习
+
+<style></style>
+    所有的ASS都必须在<style></style>下
+
+最基本的选择器，有这样四种
+    1.标签选择器
+        选择一个页面上的所有相同类的标签，进行属性的修改
+            <style>
+                p{
+                    color: aqua;
+                }
+            </style>
+        这样就会把所有的p类型的标签都改掉了
+
+    2.类选择器
+        在使用类选择器的时候，相当于把一组的标签定义为同一类，然后在style里面，一起进行修改。
+            <style>
+                .Photo{                             /*这里定义的时候一定要加一个'.'*/
+                    text-align: center;
+                }
+            </style>
+            <div class="Photo"><img src="images\庄研的帅照.jpg" alt="呀，照片不见了" title="这就是我，嘿嘿"></div>
+            <div class="Photo">庄研是个大帅哥，嘿嘿嘿</div>
+
+        当然可以一个标签使用多个class
+            <style>
+                .Super{
+                    font: 20px/26px "Microsoft YaHei";
+                }
+
+                .Photo{
+                    text-align: center;
+                }
+            </style>
+
+            <div class="Photo Super">
+                <p>照片来了哦</p><br>
+                <img src="images\庄研的帅照.jpg" alt="呀，照片不见了" title="这就是我，嘿嘿">
+            </div>
+
+    3.id选择器
+        与类选择器的相似的是，id选择器也基本是一个模式，先定义名称，再进行修改。
+        但是id选择器更具有指向性，一个标签最多使用一个id。
+        <style>
+                #GuangTu{                       /*这里定义的时候一定要加一个'#'*/
+                    font-weight: 1000;
+                    color: #888888;
+                    text-align: center;
+                }
+        </style>
+        <div id="GuangTu">究极究极大帅哥，嘿嘿嘿</div>
+
+
+    4.通配符
+        只有唯一一个通配符， "*"。它的作用是将整个网页的属性，一次性进行全部修改。
+        <style>
+            *{
+                color: #f00;
+            }
+        </style>
+        很少使用
+
+讲完有哪几类基本选择器，下面细说针对不同内容，可以进行的修改。
+    第一类，关于文字的，font类
+    https://www.runoob.com/css/css-font.html
+        color:          修改字体颜色        三色:rgb(255,0,0) 十六进制:#888888 英文:red       
+        font-family     指定文字的类别      比如微软雅黑，宋体
+        font-size       指定文本文字的大小  Tips:数字加单位
+        font-style      指定文字倾斜与否    无:none 有:italic 有但不推荐:oblique
+        font-weight     指定文字加粗与否    无:400  有:700  其他粗细度自行进行修改
+        font 一次性定义所有属性:
+            font: font-style font-weight font-size/line-height font-family
+            font: none 400 24px/30px "Microsoft YaHei"
+            Tips: 不能自行修改顺序，前后顺序不能调换
+                
+    
+    第二类，文本类，text类
+    https://www.runoob.com/css/css-text.html
+        text-align      指定文本对齐        左:left 中:center 右:right
+        text-decoration 对文本进行装饰      无:none 下划线: underline 上划线:overline 删除:line-through
+        text-index      文本缩进            比如：text-index:2em， 两个字体长度。
+        line-height     行高                行高 = 行间距 + 字体大小， 记得加单位
+            Tips: 行高的定义可以通过font-size/1.5来定义。这表示行高为当前定义的字体大小的1.5倍
+这里就可以介绍
+    1.  内部装饰表
+    2.  行内装饰表
+    3.  外部装饰表              
+三者的区别:
+    内部装饰也就是刚才我们写的所有，在<style></style>中进行定义
+    行内装饰就是在每一个标签中进行装饰
+    外部装饰就是将装饰的ASS单独拎出去，成为一个文件，再导入回来进行使用。
+
+这里讲一个vscode里面使用的小技巧，emmet语法
+    <!-- .code 加上tab -->      <div class="code"></div>
+
+    <!-- .code*3 加上tab -->    <div class="code"></div>
+                                <div class="code"></div>
+                                <div class="code"></div>   
+    默认是div，但可以进行调整：
+    <!-- a.code 加上tab-->       <a href="" class="code"></a>
+    如果我们想要id的便捷方式：
+    <!-- #code -->              <div id="code"></div>
+
+    如果想要便捷的添加内容，只需要在大括号里增添就好了
+    <!-- .code{庄研} 加上tab-->  <div class="code">庄研</div>
+
+    这里是$的便捷使用，默认从1开始，也可以进行调整
+    <!-- .code{庄研$}*3 -->     <div class="code">庄研1</div>
+                                <div class="code">庄研2</div>
+                                <div class="code">庄研3</div>
+    搭配@使用，可以改变初始的值 li.code$@3*5
+    <li class="code3"></li>
+    <li class="code4"></li>
+    <li class="code5"></li>
+    <li class="code6"></li>
+    <li class="code7"></li>
+
+    父子级的添加: 使用>     ul>li*3
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    同级的添加：使用+       ul+a
+    <ul></ul>
+    <a href=""></a>
+    
+    如果一次性有很多，分辨不清逻辑关系可以用括号来帮忙
+    (.code>ul)+(ul>li*3)
+    <div class="code">
+        <ul></ul>
+    </div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    <style>
+        p{
+            @font-face {
+                font-family: ;
+                src: url();
+            }
+        }
+    </style>
+
+基础的选择器讲完之后，就可以讲复合选择器了
+    什么是复合选择器？
+        就是将基础选择器叠加起来
+    有哪几种复合选择器？
+        1.后代选择器
+            <style>
+                ul li a{
+                    text-align: center;
+                }
+            </style>
+            <ul>
+                <li><a href="#">这是一个超链接</a></li>
+            </ul>
+        这样子就可以选中li中的a，进行接下来的修改
+            Tips:只要继续往下写，可以无限延生后代
+
+        2.子代选择器
+        <style>
+            ul li >a {
+                font: 16px "Microsoft YaHei";
+                background-color: pink;
+            }
+        </style>
+        <ul>
+            <li><a href="images/庄研的帅照.JPG">康康？</a></li>
+            <li>不康</li>
+        </ul>
+        一定是子代，也就是儿子那一代，不能再有衍生
+
+        Tips:如果子代有好几个，我只想选特定的那个该怎么办？，这里提供了nth-child这种选项，括号里填入第几个
+        <style>
+            ul li:nth-child(3){
+                background-color: pink;
+            }
+        </style>
+        <ul>
+            <li><a href="images/庄研的帅照.JPG">康康？</a></li>
+            <li>不康</li>
+            <li>不康</li>
+            <li>不康</li>
+            <li>不康</li>
+            <li>不康</li>
+            <li>不康</li>
+        </ul>
+        这样就可以实现某一个指定的子代
+
+        3.并集选择器
+        上面两个都是关于子代的选择器，如果是属于同一个等级的呢？
+            <style>
+                ul, a {
+                    text-align: center;
+                }
+            </style>
+        这样子就可以调用成功，其实我不知道这样子做的意义有多大，在我们已经有了类选择器的情况下。
+
+        4.伪类选择器
+            一共有两类，共五种
+                第一类为静态伪类选择器，只能用于超链接
+                    1. :link    
+                        表示未点击的超链接
+                    2. :visited
+                        表示已经点击过的超链接
+                这样子看来是不是觉得:link和a标签有点重叠呢？
+                https://blog.csdn.net/weixin_33739627/article/details/91453537?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1
+                    感觉上的确是这样的。
+                    下面是错误观点: 
+                        :link选择器适用范围更小，一定是超链接的a选择器。而a选择器还有锚点链接，也就不是超链接。
+                    经过尝试，锚点链接依然可以被:link选择器选中
+
+                    另一个观点是:
+                        :link选择器对于无效链接，并不产生作用。 正确！
+
+                    尝试之后发现，其实:link针对带href参数设定的a，如果href这个参数未定义，那么并不能实现。
+                    那这么看来。。。其实意义真的不大。
+                
+                第二类为动态伪类选择器，并不局限于超链接，定义上来说所有的标签都可以使用
+                    1. :hover
+                        光标悬停的时候，发生的变化
+                    2. :active
+                        光标左键点中却没有松开的时候，发生的变化
+                    3. :focus
+                        光标左键选择后并松开后，发生的变化
+                
+                Tips:
+                    使用这些标签的时候记得顺序 LoVe HAte，不可以颠倒。如果顺序错了，界面会无法正确显示。
+                
+            下面来一段代码演示:
+            <style>
+                body {
+                    font: 18px/36px "Microsoft YaHei"
+                }
+        
+                a {
+                    display: block;
+                    width: 400px;
+                    height: 36px;
+                    background-color: #000000;
+                    text-decoration: none;
+                }
+        
+                a:link, a:visited{
+                    color: #fff;
+                }
+        
+                a:hover{
+                    background-color: #666666;
+                }
+        
+                input:focus{
+                    background: #666666;
+                }
+            </style>
+            <body>
+                <h4 id="Top">欢迎来到我们的伪类选择器测试页面</h4>
+                <ul>
+                    <li><a href="images/庄研的帅照.JPG" target="blank">想要看一下我们可爱的庄研是什么样么？</a></li>
+                    <li><a href="https://www.baidu.com" target="blank">我们要去百度咯</a></li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li><a href="#Top">想不想回去？</a></li>
+                    <li><a href="">我是一个没有家的a标签</a></li>
+                    <li><a href="#bottom">那我们一起去楼下？</a></li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li>我是无情的分割机器</li>
+                    <li><input type="text" placeholder="来吧，写点东西？"></li>
+                </ul>
+                <h4 id="bottom">我是底部标签</h4>
+            </body>
+
+下面讲一下关于标签在界面中的显示
+    在html的世界里面一共有三种显示模式
+        1. 块元素 block
+            属性:
+            1.独占一行
+            2.可以设置宽度和高度，即便设置的宽度不是完美的一行，剩余的部分也不能填充给另一个标签
+            3.可以容纳其他块元素
+            样例: <div></div> h1~h6
+        2.  行内元素 inline
+            属性:
+            1.可以和很多元素共同使用一行
+            2.无法设置宽度和高度，宽度就是默认字体长度
+            3.只能容纳字体，不能容纳块元素
+            样例: <span></span> <p></p>
+        3.  行内块元素 inline-block
+            属性：
+            1.可以和很多元素共同使用一行
+            2.可以设置宽度和高度
+            3.
+
+        
+            
+一些tips：
+1.id与name的区别:
+https://blog.csdn.net/Anglebeat/article/details/21475765?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param
+
+
+        
+
